@@ -1,17 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+// fisrt code ...
+// it's pattern :
+// const element = React.createElement("element name",{element attributes},"element content");
+
+const element = React.createElement(
+  "div",
+  { id: "title", className: "app-title" },
+  "this is box for title"
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// attaching element object to the div with root id in public/index.html
+
+ReactDOM.render(element, document.getElementById("root"));
