@@ -15,13 +15,29 @@ import Product from "./components/Products/Product";
 
 //----------------- to this code in 3rd step -> ------------------------------
 
+// const AppComponent = () => {
+//   return (
+//     <div className="detail" id="about">
+//       <h1>we use component method</h1>
+//       <Product />
+//       <Product />
+//       <Product />
+//     </div>
+//   );
+// };
+
+//----------------- to this code in 4rd step with dynamic data -> ------------------------------
+
 const AppComponent = () => {
   return (
     <div className="detail" id="about">
       <h1>we use component method</h1>
-      <Product />
-      <Product />
-      <Product />
+      <Product name="phone" price="699" />
+      <Product name="iPod" price="799" />
+      {/* for children we use this method ↓ */}
+      <Product name="socks" price="25">
+        <p>discount is 15%</p>
+      </Product>
     </div>
   );
 };
