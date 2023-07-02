@@ -1,0 +1,6 @@
+.detail {
+  padding: 1rem;
+}
+.detail > :nth-child(n) {
+  margin: 1rem 0;
+}

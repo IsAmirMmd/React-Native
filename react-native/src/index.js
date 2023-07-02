@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 // we import app.js in second step :
 import AppComponent from "./app";
+
+import "./index.css";
 // ------------------------------------------------------------------
 // fisrt code ...
 // it's pattern :

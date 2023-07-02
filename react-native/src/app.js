@@ -7,6 +7,8 @@ import HooksCounterClass from "./components/HooksCounterClass";
 import FormHook from "./components/FormUser";
 import RandomGene from "./components/RandomGenerator";
 
+import "./app.css";
+
 //----------------- we change this code from 2nd step to -> ------------------
 
 // const AppComponent = () => {
