@@ -71,6 +71,15 @@ class AppComponent extends Component {
       { name: "socks", price: 25 },
     ],
   };
+  clickHandler = () => {
+    this.setState({
+      products: [
+        { name: "iphone", price: 700 },
+        { name: "iPad", price: 800 },
+        { name: "socks", price: 29 },
+      ],
+    });
+  };
   render() {
     return (
       <div className="detail" id="about">
@@ -78,6 +87,7 @@ class AppComponent extends Component {
         {this.state.products.map((product) => {
           return <Product name={product.name} price={product.price} />;
         })}
+        <button onClick={this.clickHandler}>change price</button>
       </div>
     );
   }
