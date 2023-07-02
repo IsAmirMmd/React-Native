@@ -2,6 +2,8 @@ import React, { Component, useState } from "react";
 // we import Product.js in 3rd step :
 import Product from "./components/Products/Product";
 import { render } from "react-dom";
+import HooksCounter from "./components/HooksCounter";
+import HooksCounterClass from "./components/HooksCounterClass";
 
 //----------------- we change this code from 2nd step to -> ------------------
 
@@ -117,6 +119,10 @@ const AppComponent = () => {
         return <Product name={product.name} price={product.price} />;
       })}
       <button onClick={clickHandler}>change price</button>
+      <p>using functional state(call back)</p>
+      <HooksCounter />
+      <p>using class state (call back)</p>
+      <HooksCounterClass />
     </div>
   );
 };
