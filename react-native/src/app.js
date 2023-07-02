@@ -5,6 +5,7 @@ import { render } from "react-dom";
 import HooksCounter from "./components/HooksCounter";
 import HooksCounterClass from "./components/HooksCounterClass";
 import FormHook from "./components/FormUser";
+import RandomGene from "./components/RandomGenerator";
 
 //----------------- we change this code from 2nd step to -> ------------------
 
@@ -127,6 +128,8 @@ const AppComponent = () => {
       {/* using function state for update Objects' data */}
       <p>update state(data type = Object )</p>
       <FormHook />
+      {/* using call back and state to update array */}
+      <RandomGene />
     </div>
   );
 };
