@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 // we import Product.js in 3rd step :
 import Product from "./components/Products/Product";
 import { render } from "react-dom";
@@ -62,36 +62,64 @@ import { render } from "react-dom";
 // }
 
 // let's check this code with .map ->
+// ----------------- class state code ↓ ------------------
 
-class AppComponent extends Component {
-  state = {
-    products: [
-      { name: "iphone", price: 699 },
-      { name: "iPad", price: 799 },
-      { name: "socks", price: 25 },
-    ],
+// class AppComponent extends Component {
+//   state = {
+//     products: [
+//       { name: "iphone", price: 699 },
+//       { name: "iPad", price: 799 },
+//       { name: "socks", price: 25 },
+//     ],
+//   };
+//   clickHandler = () => {
+//     this.setState({
+//       products: [
+//         { name: "iphone", price: 700 },
+//         { name: "iPad", price: 800 },
+//         { name: "socks", price: 29 },
+//       ],
+//     });
+//   };
+//   render() {
+//     return (
+//       <div className="detail" id="about">
+//         <h1>we use component method v6</h1>
+//         {this.state.products.map((product) => {
+//           return <Product name={product.name} price={product.price} />;
+//         })}
+//         <button onClick={this.clickHandler}>change price</button>
+//       </div>
+//     );
+//   }
+// }
+
+// export default AppComponent;
+// ------------------ functional state code ↓ -----------------
+const AppComponent = () => {
+  const [products, setProduct] = useState([
+    { name: "iphone", price: 699 },
+    { name: "iPad", price: 799 },
+    { name: "socks", price: 29 },
+  ]);
+
+  const clickHandler = () => {
+    setProduct([
+      { name: "iphone 12", price: 700 },
+      { name: "iPad", price: 800 },
+      { name: "socks", price: 30 },
+    ]);
   };
-  clickHandler = () => {
-    this.setState({
-      products: [
-        { name: "iphone", price: 700 },
-        { name: "iPad", price: 800 },
-        { name: "socks", price: 29 },
-      ],
-    });
-  };
-  render() {
-    return (
-      <div className="detail" id="about">
-        <h1>we use component method v6</h1>
-        {this.state.products.map((product) => {
-          return <Product name={product.name} price={product.price} />;
-        })}
-        <button onClick={this.clickHandler}>change price</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="detail" id="about">
+      <h1>we use component method v6</h1>
+      {products.map((product) => {
+        return <Product name={product.name} price={product.price} />;
+      })}
+      <button onClick={clickHandler}>change price</button>
+    </div>
+  );
+};
 
 export default AppComponent;
 
@@ -99,3 +127,5 @@ export default AppComponent;
 
 // 6. using state for make it more dynamic :
 //      - adding state to AppComponent -> { line 65 }
+
+// 7. using functional state instead of class state
