@@ -4,6 +4,7 @@ import Product from "./components/Products/Product";
 import { render } from "react-dom";
 import HooksCounter from "./components/HooksCounter";
 import HooksCounterClass from "./components/HooksCounterClass";
+import FormHook from "./components/FormUser";
 
 //----------------- we change this code from 2nd step to -> ------------------
 
@@ -123,6 +124,9 @@ const AppComponent = () => {
       <HooksCounter />
       <p>using class state (call back)</p>
       <HooksCounterClass />
+      {/* using function state for update Objects' data */}
+      <p>update state(data type = Object )</p>
+      <FormHook />
     </div>
   );
 };
