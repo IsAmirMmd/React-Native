@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 // we import Product.js in 3rd step :
 import Product from "./components/Products/Product";
 import { render } from "react-dom";
@@ -63,7 +63,7 @@ import { render } from "react-dom";
 
 // let's check this code with .map ->
 
-class AppComponent extends React.Component {
+class AppComponent extends Component {
   state = {
     products: [
       { name: "iphone", price: 699 },
