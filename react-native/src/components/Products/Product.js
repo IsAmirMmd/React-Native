@@ -1,3 +1,5 @@
+import styles from "./product.module.css";
+
 // 3. using component to avoid from complex in code
 
 // we use an shortcut snippet "sfc"
@@ -12,7 +14,7 @@
 
 const Product = (props_or_any_name) => {
   return (
-    <div>
+    <div className={styles.product}>
       <p>product name is {props_or_any_name.name}</p>
       <p>product price : {props_or_any_name.price}$</p>
       {/* if our product component has any child we use below ↓ */}
