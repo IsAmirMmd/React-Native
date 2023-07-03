@@ -120,7 +120,7 @@ const AppComponent = () => {
     <div className="detail" id="about">
       <h1>we use component method v6</h1>
       {products.map((product) => {
-        return <Product name={product.name} price={product.price} />;
+        return <Product name={product.name} price={product.price} click={clickHandler.bind(this)}/>;
       })}
       <button onClick={clickHandler}>change price</button>
       <p>using functional state(call back)</p>
