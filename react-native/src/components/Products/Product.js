@@ -19,6 +19,14 @@ const Product = (props_or_any_name) => {
       <p>product price : {props_or_any_name.price}$</p>
       {/* if our product component has any child we use below ↓ */}
       {props_or_any_name.children}
+      <p>{props_or_any_name.amount}</p>
+
+      <button onClick={props_or_any_name.increase} className={styles.button}>
+        increase
+      </button>
+      <button onClick={props_or_any_name.decrease} className={styles.button}>
+        decrease
+      </button>
       <button onClick={props_or_any_name.onDelete} className={styles.button}>
         delete
       </button>

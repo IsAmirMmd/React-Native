@@ -104,9 +104,9 @@ import "./app.css";
 // ------------------ functional state code ↓ -----------------
 const AppComponent = () => {
   const [products, setProduct] = useState([
-    { name: "iphone", price: 699, id: 1 },
-    { name: "iPad", price: 799, id: 2 },
-    { name: "socks", price: 29, id: 3 },
+    { name: "iphone", price: 699, id: 1, amount: 1 },
+    { name: "iPad", price: 799, id: 2, amount: 1 },
+    { name: "socks", price: 29, id: 3, amount: 1 },
   ]);
 
   // we have to use handler in the file that we want to set Sate in there
@@ -114,7 +114,18 @@ const AppComponent = () => {
   const clickHandler = (id) => {
     setProduct(products.filter((p) => p.id !== id));
   };
-
+  const increaseHandler = (id) => {
+    const AllPro = [...products];
+    const filtered = AllPro.find((product) => product.id === id);
+    filtered.amount++;
+    setProduct(AllPro);
+  };
+  const decreaseHandler = (id) => {
+    const AllPro = [...products];
+    const filtered = AllPro.find((p) => p.id === id);
+    filtered.amount--;
+    setProduct(AllPro);
+  };
   return (
     <div className="detail" id="about">
       <h1>we use component method v6</h1>
@@ -124,6 +135,9 @@ const AppComponent = () => {
             name={product.name}
             price={product.price}
             key={index}
+            amount={product.amount}
+            decrease={() => decreaseHandler(product.id)}
+            increase={() => increaseHandler(product.id)}
             onDelete={() => clickHandler(product.id)}
           />
         );
