@@ -20,7 +20,11 @@ const Product = (props_or_any_name) => {
       {/* if our product component has any child we use below ↓ */}
       {props_or_any_name.children}
       <p>{props_or_any_name.amount}</p>
-
+      <input
+        type="text"
+        onChange={props_or_any_name.change}
+        value={props_or_any_name.name}
+      />
       <button onClick={props_or_any_name.increase} className={styles.button}>
         increase
       </button>

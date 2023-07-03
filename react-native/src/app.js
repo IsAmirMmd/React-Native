@@ -123,9 +123,22 @@ const AppComponent = () => {
   const decreaseHandler = (id) => {
     const AllPro = [...products];
     const filtered = AllPro.find((p) => p.id === id);
-    filtered.amount--;
+    if (filtered.amount >= 2) {
+      filtered.amount--;
+      setProduct(AllPro);
+    } else {
+      const filteredPro = products.filter((p) => p.id !== id);
+      setProduct(filteredPro);
+    }
+  };
+
+  const chnageHandler = (e, id) => {
+    const AllPro = [...products];
+    const filtered = AllPro.find((p) => p.id === id);
+    filtered.name = e.target.value;
     setProduct(AllPro);
   };
+
   return (
     <div className="detail" id="about">
       <h1>we use component method v6</h1>
@@ -139,6 +152,7 @@ const AppComponent = () => {
             decrease={() => decreaseHandler(product.id)}
             increase={() => increaseHandler(product.id)}
             onDelete={() => clickHandler(product.id)}
+            change={(e) => chnageHandler(e, product.id)}
           />
         );
       })}
