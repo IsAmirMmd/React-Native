@@ -20,6 +20,10 @@ const Product = (props_or_any_name) => {
       {/* if our product component has any child we use below ↓ */}
       {props_or_any_name.children}
     </div>
+    // if we don't wanna use <div> parent we can :
+    // 1- import {Fragment}
+    // 2- <Fragment>
+    // but pay attention in using Fragment we don't have an access to use css classes!
   );
 };
 
