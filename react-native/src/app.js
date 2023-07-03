@@ -104,25 +104,30 @@ import "./app.css";
 // ------------------ functional state code ↓ -----------------
 const AppComponent = () => {
   const [products, setProduct] = useState([
-    { name: "iphone", price: 699 },
-    { name: "iPad", price: 799 },
-    { name: "socks", price: 29 },
+    { name: "iphone", price: 699, id: 1 },
+    { name: "iPad", price: 799, id: 2 },
+    { name: "socks", price: 29, id: 3 },
   ]);
 
-  const clickHandler = () => {
-    setProduct([
-      { name: "iphone 12", price: 700 },
-      { name: "iPad", price: 800 },
-      { name: "socks", price: 30 },
-    ]);
+  // we have to use handler in the file that we want to set Sate in there
+
+  const clickHandler = (id) => {
+    setProduct(products.filter((p) => p.id !== id));
   };
+
   return (
     <div className="detail" id="about">
       <h1>we use component method v6</h1>
-      {products.map((product) => {
-        return <Product name={product.name} price={product.price} click={clickHandler.bind(this)}/>;
+      {products.map((product, index) => {
+        return (
+          <Product
+            name={product.name}
+            price={product.price}
+            key={index}
+            onDelete={() => clickHandler(product.id)}
+          />
+        );
       })}
-      <button onClick={clickHandler}>change price</button>
       <p>using functional state(call back)</p>
       <HooksCounter />
       <p>using class state (call back)</p>

@@ -14,11 +14,14 @@ import styles from "./product.module.css";
 
 const Product = (props_or_any_name) => {
   return (
-    <div className={styles.product} onClick={props_or_any_name.click}>
+    <div className={styles.product}>
       <p>product name is {props_or_any_name.name}</p>
       <p>product price : {props_or_any_name.price}$</p>
       {/* if our product component has any child we use below ↓ */}
       {props_or_any_name.children}
+      <button onClick={props_or_any_name.onDelete} className={styles.button}>
+        delete
+      </button>
     </div>
     // if we don't wanna use <div> parent we can :
     // 1- import {Fragment}
