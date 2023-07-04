@@ -1,5 +1,5 @@
 import styles from "./product.module.css";
-
+import { BiTrash } from "react-icons/bi";
 // 3. using component to avoid from complex in code
 
 // we use an shortcut snippet "sfc"
@@ -26,10 +26,10 @@ const Product = (props_or_any_name) => {
         value={props_or_any_name.name}
       />
       <button onClick={props_or_any_name.increase} className={styles.button}>
-        increase
+        +
       </button>
       <button onClick={props_or_any_name.decrease} className={styles.button}>
-        decrease
+        {props_or_any_name.amount > 1 ? "-" : <BiTrash />}
       </button>
       <button onClick={props_or_any_name.onDelete} className={styles.button}>
         delete
