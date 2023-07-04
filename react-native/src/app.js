@@ -138,24 +138,27 @@ const AppComponent = () => {
     filtered.name = e.target.value;
     setProduct(AllPro);
   };
-
+  const renderProduct = () => {
+    return products.map((product, index) => {
+      return (
+        <Product
+          name={product.name}
+          price={product.price}
+          key={index}
+          amount={product.amount}
+          decrease={() => decreaseHandler(product.id)}
+          increase={() => increaseHandler(product.id)}
+          onDelete={() => clickHandler(product.id)}
+          change={(e) => chnageHandler(e, product.id)}
+        />
+      );
+    });
+  };
   return (
     <div className="detail" id="about">
       <h1>we use component method v6</h1>
-      {products.map((product, index) => {
-        return (
-          <Product
-            name={product.name}
-            price={product.price}
-            key={index}
-            amount={product.amount}
-            decrease={() => decreaseHandler(product.id)}
-            increase={() => increaseHandler(product.id)}
-            onDelete={() => clickHandler(product.id)}
-            change={(e) => chnageHandler(e, product.id)}
-          />
-        );
-      })}
+      {/* {console.log(products.length)} */}
+      {products.length > 0 ? renderProduct() : "go shopping"}
       <p>using functional state(call back)</p>
       <HooksCounter />
       <p>using class state (call back)</p>
