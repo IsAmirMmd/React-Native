@@ -28,7 +28,12 @@ const Product = (props_or_any_name) => {
       <button onClick={props_or_any_name.increase} className={styles.button}>
         +
       </button>
-      <button onClick={props_or_any_name.decrease} className={styles.button}>
+      <button
+        onClick={props_or_any_name.decrease}
+        className={`${styles.button} ${
+          props_or_any_name.amount === 1 && styles.removeButton
+        }`}
+      >
         {props_or_any_name.amount > 1 ? "-" : <BiTrash />}
       </button>
       <button onClick={props_or_any_name.onDelete} className={styles.button}>
