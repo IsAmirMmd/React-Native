@@ -102,77 +102,157 @@ import "./app.css";
 
 // export default AppComponent;
 // ------------------ functional state code ↓ -----------------
-const AppComponent = () => {
-  const [products, setProduct] = useState([
-    { name: "iphone", price: 699, id: 1, amount: 1 },
-    { name: "iPad", price: 799, id: 2, amount: 1 },
-    { name: "socks", price: 29, id: 3, amount: 1 },
-  ]);
+// const AppComponent = () => {
+//   const [products, setProduct] = useState([
+//     { name: "iphone", price: 699, id: 1, amount: 1 },
+//     { name: "iPad", price: 799, id: 2, amount: 1 },
+//     { name: "socks", price: 29, id: 3, amount: 1 },
+//   ]);
 
-  // we have to use handler in the file that we want to set Sate in there
+//   // we have to use handler in the file that we want to set Sate in there
 
-  const clickHandler = (id) => {
-    setProduct(products.filter((p) => p.id !== id));
+//   const clickHandler = (id) => {
+//     setProduct(products.filter((p) => p.id !== id));
+//   };
+//   const increaseHandler = (id) => {
+//     const index = products.findIndex((item) => item.id === id);
+//     const product = products[index];
+//     console.log(product);
+//     product.amount++;
+//     const AllPro = [...products];
+//     AllPro[index] = product;
+//     setProduct(AllPro);
+//   };
+//   const decreaseHandler = (id) => {
+//     const AllPro = [...products];
+//     const filtered = AllPro.find((p) => p.id === id);
+//     if (filtered.amount >= 2) {
+//       filtered.amount--;
+//       setProduct(AllPro);
+//     } else {
+//       const filteredPro = products.filter((p) => p.id !== id);
+//       setProduct(filteredPro);
+//     }
+//   };
+
+//   const chnageHandler = (e, id) => {
+//     const AllPro = [...products];
+//     const filtered = AllPro.find((p) => p.id === id);
+//     filtered.name = e.target.value;
+//     setProduct(AllPro);
+//   };
+//   const renderProduct = () => {
+//     return products.map((product, index) => {
+//       return (
+//         <Product
+//           name={product.name}
+//           price={product.price}
+//           key={index}
+//           amount={product.amount}
+//           decrease={() => decreaseHandler(product.id)}
+//           increase={() => increaseHandler(product.id)}
+//           onDelete={() => clickHandler(product.id)}
+//           change={(e) => chnageHandler(e, product.id)}
+//         />
+//       );
+//     });
+//   };
+//   return (
+//     <div className="detail" id="about">
+//       <h1>we use component method v6</h1>
+//       {products.length > 0 ? renderProduct() : "go shopping"}
+//       <p>using functional state(call back)</p>
+//       <HooksCounter />
+//       <p>using class state (call back)</p>
+//       <HooksCounterClass />
+//       {/* using function state for update Objects' data */}
+//       <p>update state(data type = Object )</p>
+//       <FormHook />
+//       {/* using call back and state to update array */}
+//       <RandomGene />
+//     </div>
+//   );
+// };
+
+class AppComponent extends Component {
+  state = {
+    products: [
+      { name: "iphone", price: 699, id: 1, amount: 1 },
+      { name: "iPad", price: 799, id: 2, amount: 1 },
+      { name: "socks", price: 29, id: 3, amount: 1 },
+    ],
   };
-  const increaseHandler = (id) => {
-    const index = products.findIndex((item) => item.id === id);
-    const product = products[index];
+
+  clickHandler = (id) => {
+    const AllPro = [...this.state.products];
+    const filtered = AllPro.filter((p) => p.id != id);
+    this.setState({ products: filtered });
+  };
+
+  increaseHandler = (id) => {
+    const index = this.state.products.findIndex((item) => item.id === id);
+    const product = this.state.products[index];
     console.log(product);
     product.amount++;
-    const AllPro = [...products];
+    const AllPro = [...this.state.products];
     AllPro[index] = product;
-    setProduct(AllPro);
+    this.setState({ AllPro: this.state.products });
   };
-  const decreaseHandler = (id) => {
-    const AllPro = [...products];
+
+  decreaseHandler = (id) => {
+    const AllPro = [...this.state.products];
     const filtered = AllPro.find((p) => p.id === id);
     if (filtered.amount >= 2) {
       filtered.amount--;
-      setProduct(AllPro);
+      this.setState(AllPro);
     } else {
-      const filteredPro = products.filter((p) => p.id !== id);
-      setProduct(filteredPro);
+      const filteredPro = this.state.products.filter((p) => p.id !== id);
+      this.setState({ products: filteredPro });
     }
   };
 
-  const chnageHandler = (e, id) => {
-    const AllPro = [...products];
+  chnageHandler = (e, id) => {
+    const AllPro = [...this.state.products];
     const filtered = AllPro.find((p) => p.id === id);
     filtered.name = e.target.value;
-    setProduct(AllPro);
+    this.setState(AllPro);
   };
-  const renderProduct = () => {
-    return products.map((product, index) => {
+
+  renderProduct = () => {
+    return this.state.products.map((product, index) => {
       return (
         <Product
           name={product.name}
           price={product.price}
           key={index}
           amount={product.amount}
-          decrease={() => decreaseHandler(product.id)}
-          increase={() => increaseHandler(product.id)}
-          onDelete={() => clickHandler(product.id)}
-          change={(e) => chnageHandler(e, product.id)}
+          decrease={() => this.decreaseHandler(product.id)}
+          increase={() => this.increaseHandler(product.id)}
+          onDelete={() => this.clickHandler(product.id)}
+          change={(e) => this.chnageHandler(e, product.id)}
         />
       );
     });
   };
-  return (
-    <div className="detail" id="about">
-      <h1>we use component method v6</h1>
-      {products.length > 0 ? renderProduct() : "go shopping"}
-      <p>using functional state(call back)</p>
-      <HooksCounter />
-      <p>using class state (call back)</p>
-      <HooksCounterClass />
-      {/* using function state for update Objects' data */}
-      <p>update state(data type = Object )</p>
-      <FormHook />
-      {/* using call back and state to update array */}
-      <RandomGene />
-    </div>
-  );
-};
+
+  render() {
+    return (
+      <div className="detail" id="about">
+        <h1>we use component method v6</h1>
+        {this.state.products.length > 0 ? this.renderProduct() : "go shopping"}
+        <p>using functional state(call back)</p>
+        <HooksCounter />
+        <p>using class state (call back)</p>
+        <HooksCounterClass />
+        {/* using function state for update Objects' data */}
+        <p>update state(data type = Object )</p>
+        <FormHook />
+        {/* using call back and state to update array */}
+        <RandomGene />
+      </div>
+    );
+  }
+}
 
 export default AppComponent;
 
