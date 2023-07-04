@@ -115,9 +115,12 @@ const AppComponent = () => {
     setProduct(products.filter((p) => p.id !== id));
   };
   const increaseHandler = (id) => {
+    const index = products.findIndex((item) => item.id === id);
+    const product = products[index];
+    console.log(product);
+    product.amount++;
     const AllPro = [...products];
-    const filtered = AllPro.find((product) => product.id === id);
-    filtered.amount++;
+    AllPro[index] = product;
     setProduct(AllPro);
   };
   const decreaseHandler = (id) => {
@@ -157,7 +160,6 @@ const AppComponent = () => {
   return (
     <div className="detail" id="about">
       <h1>we use component method v6</h1>
-      {/* {console.log(products.length)} */}
       {products.length > 0 ? renderProduct() : "go shopping"}
       <p>using functional state(call back)</p>
       <HooksCounter />
