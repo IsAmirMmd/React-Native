@@ -6,6 +6,8 @@ import HooksCounter from "./components/HooksCounter";
 import HooksCounterClass from "./components/HooksCounterClass";
 import FormHook from "./components/FormUser";
 import RandomGene from "./components/RandomGenerator";
+import FunctionalCounter from "./components/FunctionalCounter";
+import ClassCounter from "./components/ClassCounter";
 
 import "./app.css";
 
@@ -240,15 +242,25 @@ class AppComponent extends Component {
       <div className="detail" id="about">
         <h1>we use component method v6</h1>
         {this.state.products.length > 0 ? this.renderProduct() : "go shopping"}
+
         <p>using functional state(call back)</p>
         <HooksCounter />
+
         <p>using class state (call back)</p>
         <HooksCounterClass />
+
         {/* using function state for update Objects' data */}
         <p>update state(data type = Object )</p>
         <FormHook />
+
         {/* using call back and state to update array */}
         <RandomGene />
+
+        {/* update dom using useEfffect in functional state */}
+        <FunctionalCounter />
+
+        {/* update dom using cdm in class state */}
+        <ClassCounter />
       </div>
     );
   }
