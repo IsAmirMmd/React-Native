@@ -11,6 +11,8 @@ import ClassCounter from "./components/ClassCounter";
 
 import "./app.css";
 import ClassTimer from "./components/ClassTimer";
+import HoverCounter from "./components/HOC/hoverCounter";
+import ClickCounter from "./components/HOC/clickCounter";
 
 //----------------- we change this code from 2nd step to -> ------------------
 
@@ -269,6 +271,10 @@ class AppComponent extends Component {
           {this.state.isShow ? "hide" : "show"}
         </button>
         <p>{this.state.isShow && <ClassTimer />}</p>
+
+        {/* using HOC */}
+        <HoverCounter />
+        <ClickCounter />
       </div>
     );
   }
