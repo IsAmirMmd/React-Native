@@ -14,6 +14,7 @@ import ClassTimer from "./components/ClassTimer";
 import HoverCounter from "./components/HOC/hoverCounter";
 import ClickCounter from "./components/HOC/clickCounter";
 import ClassRef from "./components/ref/classRef";
+import InputRef from "./components/ref/InputRef";
 
 //----------------- we change this code from 2nd step to -> ------------------
 
@@ -280,6 +281,9 @@ class AppComponent extends Component {
         {/* createRef in react */}
         {/* make the app in focus after reloading page */}
         <ClassRef />
+
+        {/* input ref example */}
+        <InputRef />
       </div>
     );
   }
