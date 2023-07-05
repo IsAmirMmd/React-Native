@@ -10,6 +10,7 @@ import FunctionalCounter from "./components/FunctionalCounter";
 import ClassCounter from "./components/ClassCounter";
 
 import "./app.css";
+import ClassTimer from "./components/ClassTimer";
 
 //----------------- we change this code from 2nd step to -> ------------------
 
@@ -183,6 +184,7 @@ class AppComponent extends Component {
       { name: "iPad", price: 799, id: 2, amount: 1 },
       { name: "socks", price: 29, id: 3, amount: 1 },
     ],
+    isShow: true,
   };
 
   clickHandler = (id) => {
@@ -261,6 +263,12 @@ class AppComponent extends Component {
 
         {/* update dom using cdm in class state */}
         <ClassCounter />
+
+        {/* clean-up in class state */}
+        <button onClick={() => this.setState({ isShow: !this.state.isShow })}>
+          {this.state.isShow ? "hide" : "show"}
+        </button>
+        <p>{this.state.isShow && <ClassTimer />}</p>
       </div>
     );
   }
