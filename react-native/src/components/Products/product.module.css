@@ -2,22 +2,40 @@
   box-sizing: border-box;
   border: 2px solid rebeccapurple;
   padding: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.16rem;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 80vw;
 }
-.button {
-  font-size: 1rem;
-  padding: 10px 5px;
+button {
+  border: 2px solid #8b5cf6;
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: #8b5cf6;
+  outline: none;
+  background-color: transparent;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
+
+button:hover {
+  background-color: #8b5cf6;
+  color: #fff;
+}
+
 .removeButton {
   color: rgb(235, 0, 0);
   outline: none;
   background-color: rgb(249, 226, 234);
+  border: 0;
+  border-radius: 4px;
+}
+.removeButton:hover {
+  background-color: rgb(235, 0, 0);
+  outline: none;
+  color: rgb(249, 226, 234);
   border: 0;
   border-radius: 4px;
 }

@@ -2,4 +2,18 @@
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+}
+input[type="text"] {
+  border: 2px solid #8b5cf6;
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: #8b5cf6;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="text"]:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 1px #8b5cf6;
 }
