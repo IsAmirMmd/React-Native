@@ -17,6 +17,7 @@ import ClassRef from "./components/ref/classRef";
 import InputRef from "./components/ref/InputRef";
 import CounterOne from "./components/Context/CounterOne";
 import CounterProvider from "./components/Context/CounterProvider";
+import CounterReducer from "./components/Reducer/CounterReducer";
 
 //----------------- we change this code from 2nd step to -> ------------------
 
@@ -292,6 +293,9 @@ class AppComponent extends Component {
         <CounterProvider>
           <CounterOne /> {/* use as children method  */}
         </CounterProvider>
+
+        {/* use reducer to make code shorter */}
+        <CounterReducer />
       </div>
     );
   }
