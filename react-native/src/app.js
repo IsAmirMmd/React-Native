@@ -15,6 +15,8 @@ import HoverCounter from "./components/HOC/hoverCounter";
 import ClickCounter from "./components/HOC/clickCounter";
 import ClassRef from "./components/ref/classRef";
 import InputRef from "./components/ref/InputRef";
+import CounterOne from "./components/Context/CounterOne";
+import CounterProvider from "./components/Context/CounterProvider";
 
 //----------------- we change this code from 2nd step to -> ------------------
 
@@ -284,6 +286,12 @@ class AppComponent extends Component {
 
         {/* input ref example */}
         <InputRef />
+
+        {/* use context  */}
+        {/* use as parent method ↓ */}
+        <CounterProvider>
+          <CounterOne /> {/* use as children method  */}
+        </CounterProvider>
       </div>
     );
   }
