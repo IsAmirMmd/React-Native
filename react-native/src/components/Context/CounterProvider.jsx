@@ -15,3 +15,8 @@ const CounterProvider = ({ children }) => {
 };
 
 export default CounterProvider;
+
+// some tip :
+// 1. for make the app more effecient you can use function and export them
+// 2. ex=> export const useCount  = () => useContext(CounterContext)
+// 3. and then import it in another files
