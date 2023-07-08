@@ -12,31 +12,27 @@ import { BiTrash } from "react-icons/bi";
 
 // dynamic data : ->
 
-const Product = (props_or_any_name) => {
+const Product = ({ product, onDelete, decrease, increase, change }) => {
   return (
     <div className={styles.product}>
-      <p>product name is {props_or_any_name.name}</p>
-      <p>product price : {props_or_any_name.price}$</p>
+      <p>product name is {product.name}</p>
+      <p>product price : {product.price}$</p>
       {/* if our product component has any child we use below ↓ */}
-      {props_or_any_name.children}
-      <p>{props_or_any_name.amount}</p>
-      <input
-        type="text"
-        onChange={props_or_any_name.change}
-        value={props_or_any_name.name}
-      />
-      <button onClick={props_or_any_name.increase} className={styles.button}>
+      {/* {props_or_any_name.children} */}
+      <p>{product.amount}</p>
+      <input type="text" onChange={change} value={product.name} />
+      <button onClick={increase} className={styles.button}>
         +
       </button>
       <button
-        onClick={props_or_any_name.decrease}
+        onClick={decrease}
         className={`${styles.button} ${
-          props_or_any_name.amount === 1 && styles.removeButton
+          product.amount === 1 && styles.removeButton
         }`}
       >
-        {props_or_any_name.amount > 1 ? "-" : <BiTrash />}
+        {product.amount > 1 ? "-" : <BiTrash />}
       </button>
-      <button onClick={props_or_any_name.onDelete} className={styles.button}>
+      <button onClick={onDelete} className={styles.button}>
         delete
       </button>
     </div>

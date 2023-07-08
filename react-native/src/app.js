@@ -1,4 +1,8 @@
 import React, { Component, useState } from "react";
+import ProductProvider, {
+  useProduct,
+  useProductAction,
+} from "./components/Providers/ProductsProvider";
 // we import Product.js in 3rd step :
 import Product from "./components/Products/Product";
 import { render } from "react-dom";
@@ -18,6 +22,7 @@ import InputRef from "./components/ref/InputRef";
 import CounterOne from "./components/Context/CounterOne";
 import CounterProvider from "./components/Context/CounterProvider";
 import CounterReducer from "./components/Reducer/CounterReducer";
+import ProductList from "./components/Products/ProductList";
 
 //----------------- we change this code from 2nd step to -> ------------------
 
@@ -184,122 +189,184 @@ import CounterReducer from "./components/Reducer/CounterReducer";
 //   );
 // };
 
-class AppComponent extends Component {
-  state = {
-    products: [
-      { name: "iphone", price: 699, id: 1, amount: 1 },
-      { name: "iPad", price: 799, id: 2, amount: 1 },
-      { name: "socks", price: 29, id: 3, amount: 1 },
-    ],
-    isShow: true,
-  };
+//----------------- class component ----------------------------
 
-  clickHandler = (id) => {
-    const AllPro = [...this.state.products];
-    const filtered = AllPro.filter((p) => p.id != id);
-    this.setState({ products: filtered });
-  };
+// class AppComponent extends Component {
+//   state = {
+//     products: [
+//       { name: "iphone", price: 699, id: 1, amount: 1 },
+//       { name: "iPad", price: 799, id: 2, amount: 1 },
+//       { name: "socks", price: 29, id: 3, amount: 1 },
+//     ],
+//     isShow: true,
+//   };
 
-  increaseHandler = (id) => {
-    const index = this.state.products.findIndex((item) => item.id === id);
-    const product = this.state.products[index];
-    console.log(product);
-    product.amount++;
-    const AllPro = [...this.state.products];
-    AllPro[index] = product;
-    this.setState({ AllPro: this.state.products });
-  };
+//   clickHandler = (id) => {
+//     const AllPro = [...this.state.products];
+//     const filtered = AllPro.filter((p) => p.id != id);
+//     this.setState({ products: filtered });
+//   };
 
-  decreaseHandler = (id) => {
-    const AllPro = [...this.state.products];
-    const filtered = AllPro.find((p) => p.id === id);
-    if (filtered.amount >= 2) {
-      filtered.amount--;
-      this.setState(AllPro);
-    } else {
-      const filteredPro = this.state.products.filter((p) => p.id !== id);
-      this.setState({ products: filteredPro });
-    }
-  };
+//   increaseHandler = (id) => {
+//     const index = this.state.products.findIndex((item) => item.id === id);
+//     const product = this.state.products[index];
+//     console.log(product);
+//     product.amount++;
+//     const AllPro = [...this.state.products];
+//     AllPro[index] = product;
+//     this.setState({ AllPro: this.state.products });
+//   };
 
-  chnageHandler = (e, id) => {
-    const AllPro = [...this.state.products];
-    const filtered = AllPro.find((p) => p.id === id);
-    filtered.name = e.target.value;
-    this.setState(AllPro);
-  };
+//   decreaseHandler = (id) => {
+//     const AllPro = [...this.state.products];
+//     const filtered = AllPro.find((p) => p.id === id);
+//     if (filtered.amount >= 2) {
+//       filtered.amount--;
+//       this.setState(AllPro);
+//     } else {
+//       const filteredPro = this.state.products.filter((p) => p.id !== id);
+//       this.setState({ products: filteredPro });
+//     }
+//   };
 
-  renderProduct = () => {
-    return this.state.products.map((product, index) => {
-      return (
-        <Product
-          name={product.name}
-          price={product.price}
-          key={index}
-          amount={product.amount}
-          decrease={() => this.decreaseHandler(product.id)}
-          increase={() => this.increaseHandler(product.id)}
-          onDelete={() => this.clickHandler(product.id)}
-          change={(e) => this.chnageHandler(e, product.id)}
-        />
-      );
-    });
-  };
+//   chnageHandler = (e, id) => {
+//     const AllPro = [...this.state.products];
+//     const filtered = AllPro.find((p) => p.id === id);
+//     filtered.name = e.target.value;
+//     this.setState(AllPro);
+//   };
 
-  render() {
-    return (
-      <div className="detail" id="about">
-        <h1>we use component method v6</h1>
-        {this.state.products.length > 0 ? this.renderProduct() : "go shopping"}
+//   renderProduct = () => {
+//     return this.state.products.map((product, index) => {
+//       return (
+//         <Product
+//           name={product.name}
+//           price={product.price}
+//           key={index}
+//           amount={product.amount}
+//           decrease={() => this.decreaseHandler(product.id)}
+//           increase={() => this.increaseHandler(product.id)}
+//           onDelete={() => this.clickHandler(product.id)}
+//           change={(e) => this.chnageHandler(e, product.id)}
+//         />
+//       );
+//     });
+//   };
 
-        <p>using functional state(call back)</p>
-        <HooksCounter />
+//   render() {
+//     return (
+//       <div className="detail" id="about">
+//         <h1>we use component method v6</h1>
+//         {this.state.products.length > 0 ? this.renderProduct() : "go shopping"}
 
-        <p>using class state (call back)</p>
-        <HooksCounterClass />
+//         <p>using functional state(call back)</p>
+//         <HooksCounter />
 
-        {/* using function state for update Objects' data */}
-        <p>update state(data type = Object )</p>
-        <FormHook />
+//         <p>using class state (call back)</p>
+//         <HooksCounterClass />
 
-        {/* using call back and state to update array */}
-        <RandomGene />
+//         {/* using function state for update Objects' data */}
+//         <p>update state(data type = Object )</p>
+//         <FormHook />
 
-        {/* update dom using useEfffect in functional state */}
-        <FunctionalCounter />
+//         {/* using call back and state to update array */}
+//         <RandomGene />
 
-        {/* update dom using cdm in class state */}
-        <ClassCounter />
+//         {/* update dom using useEfffect in functional state */}
+//         <FunctionalCounter />
 
-        {/* clean-up in class state */}
-        <button onClick={() => this.setState({ isShow: !this.state.isShow })}>
-          {this.state.isShow ? "hide" : "show"}
-        </button>
-        <p>{this.state.isShow && <ClassTimer />}</p>
+//         {/* update dom using cdm in class state */}
+//         <ClassCounter />
 
-        {/* using HOC */}
-        <HoverCounter />
-        <ClickCounter />
+//         {/* clean-up in class state */}
+//         <button onClick={() => this.setState({ isShow: !this.state.isShow })}>
+//           {this.state.isShow ? "hide" : "show"}
+//         </button>
+//         <p>{this.state.isShow && <ClassTimer />}</p>
 
-        {/* createRef in react */}
-        {/* make the app in focus after reloading page */}
-        <ClassRef />
+//         {/* using HOC */}
+//         <HoverCounter />
+//         <ClickCounter />
 
-        {/* input ref example */}
-        <InputRef />
+//         {/* createRef in react */}
+//         {/* make the app in focus after reloading page */}
+//         <ClassRef />
 
-        {/* use context  */}
-        {/* use as parent method ↓ */}
-        <CounterProvider>
-          <CounterOne /> {/* use as children method  */}
-        </CounterProvider>
+//         {/* input ref example */}
+//         <InputRef />
 
-        {/* use reducer to make code shorter */}
-        <CounterReducer />
-      </div>
-    );
-  }
-}
+//         {/* use context  */}
+//         {/* use as parent method ↓ */}
+//         <CounterProvider>
+//           <CounterOne /> {/* use as children method  */}
+//         </CounterProvider>
+
+//         {/* use reducer to make code shorter */}
+//         <CounterReducer />
+//       </div>
+//     );
+//   }
+// }
+
+const AppComponent = () => {
+  const [isShow, setIsShow] = useState(true);
+
+  return (
+    <div className="detail" id="about">
+      <h1>we use component method v6</h1>
+
+      {/* {products.length > 0 ? renderProduct() : "go shopping"} */}
+      <ProductProvider>
+        <ProductList />
+      </ProductProvider>
+
+      <p>using functional state(call back)</p>
+      <HooksCounter />
+
+      <p>using class state (call back)</p>
+      <HooksCounterClass />
+
+      {/* using function state for update Objects' data */}
+      <p>update state(data type = Object )</p>
+      <FormHook />
+
+      {/* using call back and state to update array */}
+      <RandomGene />
+
+      {/* update dom using useEfffect in functional state */}
+      <FunctionalCounter />
+
+      {/* update dom using cdm in class state */}
+      <ClassCounter />
+
+      {/* clean-up in class state */}
+      <button onClick={() => setIsShow(!isShow)}>
+        {isShow ? "hide" : "show"}
+      </button>
+      <p>{isShow && <ClassTimer />}</p>
+
+      {/* using HOC */}
+      <HoverCounter />
+      <ClickCounter />
+
+      {/* createRef in react */}
+      {/* make the app in focus after reloading page */}
+      <ClassRef />
+
+      {/* input ref example */}
+      <InputRef />
+
+      {/* use context  */}
+      {/* use as parent method ↓ */}
+      <CounterProvider>
+        <CounterOne /> {/* use as children method  */}
+      </CounterProvider>
+
+      {/* use reducer to make code shorter */}
+      <CounterReducer />
+    </div>
+  );
+};
 
 export default AppComponent;
 
