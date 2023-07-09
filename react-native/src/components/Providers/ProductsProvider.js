@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { productdata } from "../../db/products";
+import _ from "lodash";
 
 const ProductContext = React.createContext(); // state
 const ProductContextDispatcher = React.createContext(); // set state
@@ -22,7 +23,7 @@ export const useProduct = () => useContext(ProductContext);
 
 export const useProductAction = () => {
   const setProduct = useContext(ProductContextDispatcher);
-  const products = useContext(ProductContext);
+  let products = useContext(ProductContext);
 
   const clickHandler = (id) => {
     setProduct(products.filter((p) => p.id !== id));
@@ -57,12 +58,22 @@ export const useProductAction = () => {
 
   const filterHandler = (e) => {
     if (e.value === "") {
+      products = productdata;
       setProduct(productdata);
     } else {
       const filteredProduct = productdata.filter((item) =>
         item.size.includes(e.value)
       );
+      products = filteredProduct;
       setProduct(filteredProduct);
+    }
+  };
+
+  const sortHandlerProduct = (e) => {
+    if (e.value === "high") {
+      setProduct(_.orderBy(products, ["price"], ["desc"]));
+    } else {
+      setProduct(_.orderBy(products, ["price"], ["asc"]));
     }
   };
 
@@ -72,5 +83,6 @@ export const useProductAction = () => {
     chnageHandler,
     decreaseHandler,
     filterHandler,
+    sortHandlerProduct,
   };
 };

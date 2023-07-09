@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useProductAction } from "../Providers/ProductsProvider";
 import Select from "react-select";
+import _ from "lodash";
 
 const options = [
   { value: "", label: "All" },
@@ -11,27 +12,34 @@ const options = [
   { value: "XL", label: "XL" },
 ];
 
+const sortOptions = [
+  { value: "high", label: "highest" },
+  { value: "low", label: "lowest" },
+];
+
 const Filter = () => {
-  const { filterHandler } = useProductAction();
+  const { filterHandler, sortHandlerProduct } = useProductAction();
   const [value, setValue] = useState("");
+  const [sort, setSort] = useState("");
 
   const changeHandler = (e) => {
+    console.log(sort.value);
     filterHandler(e);
+    sortHandlerProduct(sort);
     setValue(e);
+  };
+
+  const sortHandler = (e) => {
+    sortHandlerProduct(e);
+    setSort(e);
   };
 
   return (
     <div>
       sort by
-      {/* <select value={value} onChange={(e) => changeHandler(e)}>
-        <option value="">All</option>
-        <option value="XS">XS</option>
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-        <option value="XL">XL</option>
-      </select> */}
       <Select value={value} onChange={changeHandler} options={options} />
+      sort by
+      <Select value={sort} onChange={sortHandler} options={sortOptions} />
     </div>
   );
 };
