@@ -1,15 +1,12 @@
 import React, { useContext, useState } from "react";
+import { productdata } from "../../db/products";
 
-export const ProductContext = React.createContext(); // state
-export const ProductContextDispatcher = React.createContext(); // set state
+const ProductContext = React.createContext(); // state
+const ProductContextDispatcher = React.createContext(); // set state
 
 const ProductProvider = ({ children }) => {
-  const [products, setProduct] = useState([
-    { name: "iphone", price: 699, id: 1, amount: 1 },
-    { name: "iPad", price: 799, id: 2, amount: 1 },
-    { name: "socks", price: 29, id: 3, amount: 1 },
-  ]);
-  console.log("test");
+  const [products, setProduct] = useState(productdata);
+
   return (
     <ProductContext.Provider value={products}>
       <ProductContextDispatcher.Provider value={setProduct}>
@@ -58,5 +55,22 @@ export const useProductAction = () => {
     setProduct(AllPro);
   };
 
-  return { clickHandler, increaseHandler, chnageHandler, decreaseHandler };
+  const filterHandler = (e) => {
+    if (e.value === "") {
+      setProduct(productdata);
+    } else {
+      const filteredProduct = productdata.filter((item) =>
+        item.size.includes(e.value)
+      );
+      setProduct(filteredProduct);
+    }
+  };
+
+  return {
+    clickHandler,
+    increaseHandler,
+    chnageHandler,
+    decreaseHandler,
+    filterHandler,
+  };
 };

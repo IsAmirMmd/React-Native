@@ -15,12 +15,12 @@ import { BiTrash } from "react-icons/bi";
 const Product = ({ product, onDelete, decrease, increase, change }) => {
   return (
     <div className={styles.product}>
-      <p>product name is {product.name}</p>
+      <p>{product.name}</p>
       <p>product price : {product.price}$</p>
       {/* if our product component has any child we use below ↓ */}
       {/* {props_or_any_name.children} */}
       <p>{product.amount}</p>
-      <input type="text" onChange={change} value={product.name} />
+      {/* <input type="text" onChange={change} value={product.name} /> */}
       <button onClick={increase} className={styles.button}>
         +
       </button>

@@ -23,6 +23,7 @@ import CounterOne from "./components/Context/CounterOne";
 import CounterProvider from "./components/Context/CounterProvider";
 import CounterReducer from "./components/Reducer/CounterReducer";
 import ProductList from "./components/Products/ProductList";
+import Filter from "./components/Products/Filter";
 
 //----------------- we change this code from 2nd step to -> ------------------
 
@@ -317,6 +318,7 @@ const AppComponent = () => {
 
       {/* {products.length > 0 ? renderProduct() : "go shopping"} */}
       <ProductProvider>
+        <Filter />
         <ProductList />
       </ProductProvider>
 
