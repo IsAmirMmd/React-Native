@@ -77,6 +77,24 @@ export const useProductAction = () => {
     }
   };
 
+  const searchHandler = (e, filter) => {
+    if (e.target.value === "" && filter === "") {
+      setProduct(productdata);
+    } else if (e.target.value !== "" && filter === "") {
+      const filteredProduct = productdata.filter((p) =>
+        p.name.toLowerCase().includes(e.target.value)
+      );
+      setProduct(filteredProduct);
+    } else if (e.target.value === "" && filter === "") {
+      setProduct(products);
+    } else if (e.target.value !== "" && filter !== "") {
+      const filteredProduct = products.filter((p) =>
+        p.name.toLowerCase().includes(e.target.value)
+      );
+      setProduct(filteredProduct);
+    }
+  };
+
   return {
     clickHandler,
     increaseHandler,
@@ -84,5 +102,6 @@ export const useProductAction = () => {
     decreaseHandler,
     filterHandler,
     sortHandlerProduct,
+    searchHandler,
   };
 };

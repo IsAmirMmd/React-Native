@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useProductAction } from "../Providers/ProductsProvider";
 import Select from "react-select";
 import _ from "lodash";
+import SearchBar from "../../common/search/search";
 
 const options = [
   { value: "", label: "All" },
@@ -36,9 +37,10 @@ const Filter = () => {
 
   return (
     <div>
-      sort by
+      <SearchBar filter={value} />
+      filter by size
       <Select value={value} onChange={changeHandler} options={options} />
-      sort by
+      sort by price
       <Select value={sort} onChange={sortHandler} options={sortOptions} />
     </div>
   );
