@@ -12,6 +12,7 @@ const initialValues = {
   RePassword: "",
   gender: "",
   nationality: "",
+  terms: false,
 };
 
 // 2. submit
@@ -46,6 +47,9 @@ const validationSchema = Yup.object({
   ),
   gender: Yup.string().required("Select gender"),
   nationality: Yup.string().required("nationality is required"),
+  terms: Yup.boolean()
+    .required("The terms must be accepted")
+    .oneOf([true], "The terms must be accepted"),
 });
 
 // 4. if we have the user id in db we can load its details and let him edit them
@@ -56,6 +60,7 @@ const savedData = {
   RePassword: "1235@#Abcd",
   gender: "0",
   nationality: "IR",
+  terms: false,
 };
 
 const items = [
@@ -145,6 +150,17 @@ const SignUpForm = () => {
         </div>
         <div>
           <Select items={items} formik={formik} name={"nationality"} />
+        </div>
+        <div>
+          <input
+            type="checkbox"
+            id="terms"
+            name="terms"
+            value="true"
+            checked={formik.values.terms}
+            onChange={formik.handleChange}
+          />
+          <label>Terms and Conditions</label>
         </div>
         <button type="submit" disabled={!formik.isValid}>
           submit
