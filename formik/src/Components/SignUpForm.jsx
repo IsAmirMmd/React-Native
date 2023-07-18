@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 // 1. init values
 const initialValues = {
@@ -12,7 +13,7 @@ const onSubmit = (values) => {
   // do sth
 };
 
-// 3. validate
+// 3. validate(using formik handler)
 const validate = (values) => {
   let errors = {};
 
@@ -23,11 +24,18 @@ const validate = (values) => {
   return errors;
 };
 
+// 3. validate(using yup handler)
+const validationSchema = Yup.object({
+  name: Yup.string().required("Name is Required"),
+  email: Yup.string().email("email format").required("email is Required"),
+  password: Yup.string().required("password is Required"),
+});
+
 const SignUpForm = () => {
   const formik = useFormik({
     initialValues,
     onSubmit,
-    validate,
+    validationSchema,
   });
 
   return (
