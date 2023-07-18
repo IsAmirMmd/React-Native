@@ -7,6 +7,7 @@ const initialValues = {
   email: "",
   password: "",
   RePassword: "",
+  gender: "",
 };
 
 // 2. submit
@@ -39,6 +40,7 @@ const validationSchema = Yup.object({
     [Yup.ref("password"), null],
     "Passwords must match"
   ),
+  gender: Yup.string().required("Select gender"),
 });
 
 const SignUpForm = () => {
@@ -83,6 +85,28 @@ const SignUpForm = () => {
           {formik.errors.RePassword && formik.touched.RePassword && (
             <p className="error-onForm">{formik.errors.RePassword}</p>
           )}
+        </div>
+        <div>
+          <input
+            type="radio"
+            checked={formik.values.gender === "0"}
+            name="gender"
+            value="0"
+            onChange={formik.handleChange}
+            id="0"
+          />
+          <label htmlFor="0">Male</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            checked={formik.values.gender === "1"}
+            name="gender"
+            value="1"
+            onChange={formik.handleChange}
+            id="1"
+          />
+          <label htmlFor="1">Female</label>
         </div>
         <button type="submit" disabled={!formik.isValid}>
           submit

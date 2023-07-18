@@ -50,3 +50,8 @@
 .error-onForm {
   color: red;
 }
+/* if we have label after input do this ↓ */
+input + label {
+  margin: 5px;
+  font-weight: 500;
+}
