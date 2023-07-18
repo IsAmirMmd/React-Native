@@ -43,7 +43,10 @@
   margin: 0 auto;
   text-align: left;
 }
-.formControl :nth-child(2n){
+.formControl :nth-child(2n) {
   margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
+}
+.error-onForm {
+  color: red;
 }
