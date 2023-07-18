@@ -1,19 +1,33 @@
 import { useFormik } from "formik";
 
+// 1. init values
 const initialValues = {
   name: "",
   email: "",
   password: "",
 };
 
-const SignUpForm = () => {
-  const onSubmit = (values) => {
-    // do sth
-  };
+// 2. submit
+const onSubmit = (values) => {
+  // do sth
+};
 
+// 3. validate
+const validate = (values) => {
+  let errors = {};
+
+  if (!values.name) errors.name = "Name is Required";
+  if (!values.email) errors.email = "email is Required";
+  if (!values.password) errors.password = "password is Required";
+
+  return errors;
+};
+
+const SignUpForm = () => {
   const formik = useFormik({
     initialValues,
     onSubmit,
+    validate,
   });
 
   return (
