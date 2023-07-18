@@ -46,6 +46,7 @@ const SignUpForm = () => {
     initialValues,
     onSubmit,
     validationSchema,
+    validateOnMount: true,
   });
 
   return (
@@ -83,7 +84,9 @@ const SignUpForm = () => {
             <p className="error-onForm">{formik.errors.RePassword}</p>
           )}
         </div>
-        <button type="submit">submit</button>
+        <button type="submit" disabled={!formik.isValid}>
+          submit
+        </button>
       </form>
     </div>
   );
