@@ -18,6 +18,10 @@ const initialValues = {
 // 2. submit
 const onSubmit = (values) => {
   // do sth
+  axios
+    .post("http://localhost:3001/users", values)
+    .then((res) => console.log(res.data))
+    .catch();
 };
 
 // 3. validate(using formik handler)
@@ -75,12 +79,12 @@ const SignUpForm = () => {
 
   useEffect(() => {
     // for ex we have data in db of user with id="1" ↓
-    axios
-      .get("http://localhost:3001/users/1")
-      .then((res) => {
-        setSavedDataDB(res.data);
-      })
-      .catch();
+    // axios
+    //   .get("http://localhost:3001/users/1")
+    //   .then((res) => {
+    //     setSavedDataDB(res.data);
+    //   })
+    //   .catch();
   }, []);
 
   const formik = useFormik({

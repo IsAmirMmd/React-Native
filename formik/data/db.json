@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": 2,
       "name": "amir",
       "email": "amirf@gmal.com",
       "password": "1235@#Abcd",
@@ -9,6 +9,16 @@
       "gender": "0",
       "nationality": "IR",
       "terms": false
+    },
+    {
+      "name": "amir",
+      "email": "amir@gmail.com",
+      "password": "123456789Ac@",
+      "RePassword": "123456789Ac@",
+      "gender": "0",
+      "nationality": "US",
+      "terms": true,
+      "id": 3
     }
   ]
 }
