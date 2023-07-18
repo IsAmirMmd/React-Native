@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "amir",
+      "email": "amirf@gmal.com",
+      "password": "1235@#Abcd",
+      "RePassword": "1235@#Abcd",
+      "gender": "0"
+    }
+  ]
+}

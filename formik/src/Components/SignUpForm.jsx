@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useFormik } from "formik";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 
 // 1. init values
@@ -43,9 +45,31 @@ const validationSchema = Yup.object({
   gender: Yup.string().required("Select gender"),
 });
 
+// 4. if we have the user id in db we can load its details and let him edit them
+const savedData = {
+  name: "amir",
+  email: "amirf@gmal.com",
+  password: "1235@#Abcd",
+  RePassword: "1235@#Abcd",
+  gender: "0",
+};
+
 const SignUpForm = () => {
+  const [savedDataDB, setSavedDataDB] = useState(null);
+
+  useEffect(() => {
+    // for ex we have data in db of user with id="1" ↓
+    axios
+      .get("http://localhost:3001/users/1")
+      .then((res) => {
+        setSavedDataDB(res.data);
+      })
+      .catch();
+  }, []);
+
   const formik = useFormik({
-    initialValues,
+    initialValues: savedDataDB || initialValues,
+    enableReinitialize: true,
     onSubmit,
     validationSchema,
     validateOnMount: true,
@@ -108,6 +132,9 @@ const SignUpForm = () => {
           />
           <label htmlFor="1">Female</label>
         </div>
+        <button onClick={() => setSavedDataDB(savedData)}>
+          Load Data From DB
+        </button>
         <button type="submit" disabled={!formik.isValid}>
           submit
         </button>
