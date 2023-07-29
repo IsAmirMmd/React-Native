@@ -42,9 +42,9 @@ const useFetch = (url) => {
 
     axios
       .get(url)
-      .then((res) =>
-        dispatch({ type: actions.fetchSuccess, payload: res.data })
-      )
+      .then((res) => {
+        dispatch({ type: actions.fetchSuccess, payload: res.data.results });
+      })
       .catch((err) => {
         dispatch({ type: actions.fetchError, payload: err.message });
       });
