@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 const initialState = {
   error: null,
@@ -16,7 +16,18 @@ const actions = {
 function reducer(state, action) {
   switch (action.type) {
     case actions.fetchSuccess: {
-    return {...state,}
+      return { ...state, loading: false, error: null, data: action.payload };
+    }
+    case actions.fetchRequest: {
+      return { ...state, loading: true, error: null, data: null };
+    }
+    case actions.fetchError: {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        data: null,
+      };
     }
     default:
       return state;
@@ -26,7 +37,20 @@ function reducer(state, action) {
 const useFetch = (url) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  return <div>test</div>;
+  useEffect(() => {
+    dispatch({ type: actions.fetchRequest });
+
+    axios
+      .get(url)
+      .then((res) =>
+        dispatch({ type: actions.fetchSuccess, payload: res.data })
+      )
+      .catch((err) => {
+        dispatch({ type: actions.fetchError, payload: err.message });
+      });
+  }, [url]);
+
+  return state;
 };
 
 export default useFetch;
