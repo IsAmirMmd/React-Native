@@ -5,7 +5,23 @@ export const getAsyncTodos = createAsyncThunk(
   "todos/getAsyncTodos",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhosdt:3001/todos");
+      const response = await axios.get("http://localhost:3001/todos");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue([], error.message);
+    }
+  }
+);
+
+export const addAsyncTodos = createAsyncThunk(
+  "todos/addAsyncTodos",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const response = await axios.post("http://localhost:3001/todos", {
+        id: Date.now(),
+        title: payload.title,
+        completed: false,
+      });
       return response.data;
     } catch (error) {
       return rejectWithValue([], error.message);
@@ -49,6 +65,9 @@ const TodosSlice = createSlice({
     },
     [getAsyncTodos.rejected]: (state, action) => {
       return { ...state, todos: [], error: action.error, loading: false };
+    },
+    [addAsyncTodos.fulfilled]: (state, action) => {
+      state.todos.push(action.payload);
     },
   },
 });
