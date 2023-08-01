@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TodoItem from "./TodoItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAsyncTodos } from "../feature/Todos/TodosSlice";
 
 const TodoList = () => {
-  const { todos } = useSelector((state) => state.todos);
+  const { todos, loading, error } = useSelector((state) => state.todos);
+  const dispacth = useDispatch();
+
+  useEffect(() => {
+    dispacth(getAsyncTodos());
+  }, []);
+
+  if (loading) return <p>loading...</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <ul className="list-group">
