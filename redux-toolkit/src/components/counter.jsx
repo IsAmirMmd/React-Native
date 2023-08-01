@@ -16,8 +16,8 @@ const CounterComponent = () => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <button onClick={() => dispatch(increment(Number(value) | 0))}>+</button>
-      <button onClick={() => dispatch(decrement(Number(value) | 0))}>-</button>
+      <button onClick={() => dispatch(increment(Number(value) | 1))}>+</button>
+      <button onClick={() => dispatch(decrement(Number(value) | 1))}>-</button>
     </div>
   );
 };
