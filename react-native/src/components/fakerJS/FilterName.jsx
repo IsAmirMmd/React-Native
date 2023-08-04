@@ -12,13 +12,12 @@ export default function FilterList({ names }) {
       <input type="text" onChange={changeHandler} value={query} />
       <div>
         {names.map((name, i) => {
-          <ListItem key={i} name={name} highlight={query} />;
+          return <ListItem key={i} name={name} highlight={query} />;
         })}
       </div>
     </div>
   );
 }
-
 function ListItem({ name, highlight }) {
   const index = name.toLowerCase().indexOf(highlight.toLowerCase());
   if (index === -1) {

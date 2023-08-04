@@ -24,6 +24,8 @@ import CounterProvider from "./components/Context/CounterProvider";
 import CounterReducer from "./components/Reducer/CounterReducer";
 import ProductList from "./components/Products/ProductList";
 import Filter from "./components/Products/Filter";
+import FilterList from "./components/fakerJS/FilterName";
+import { fakeNames } from "./components/fakerJS/FakerList";
 
 //----------------- we change this code from 2nd step to -> ------------------
 
@@ -366,6 +368,11 @@ const AppComponent = () => {
 
       {/* use reducer to make code shorter */}
       <CounterReducer />
+
+      {/* faker list */}
+      <p>fker </p>
+      <p>{fakeNames.length}</p>
+      <FilterList names={fakeNames} />
     </div>
   );
 };
