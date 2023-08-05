@@ -311,6 +311,8 @@ import { fakeNames } from "./components/fakerJS/FakerList";
 //   }
 // }
 
+console.log(process.env.REACT_APP_BASE_URL);
+
 const AppComponent = () => {
   const [isShow, setIsShow] = useState(true);
 
